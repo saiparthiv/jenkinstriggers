@@ -17,7 +17,7 @@ pipeline {
   stages {
     stage('Fetch Code'){
       steps {
-        git branch: 'docker', url: 'https://github.com/devopshydclub/vprofile-project.git'
+        git branch: 'master', url: 'https://github.com/saiparthiv/User-Control-Panel.git'
       }
     }
 
@@ -43,7 +43,7 @@ pipeline {
        steps {
        
          script {
-                dockerImage = docker.build( appRegistry + ":$BUILD_NUMBER", "./Docker-files/app/multistage/")
+                dockerImage = docker.build( appRegistry + ":$BUILD_NUMBER", "./Docker-files/")
              }
 
      }
