@@ -50,11 +50,8 @@ pipeline {
                 sh """
                         ${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectName='jenkinscicd' \
-                        -Dsonar.projectKey=${projectKey} \
-                        -Dsonar.projectVersion=${projectVersion} \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=${SONARQUBE_SERVER_URL} \
-                        -Dsonar.login=${SONARQUBE_TOKEN}
+                        -Dsonar.projectKey='jenkinscicd' \
+                        -Dsonar.projectVersion='1.0' \
                    """
             }
         }
