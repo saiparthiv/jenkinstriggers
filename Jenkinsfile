@@ -22,7 +22,7 @@ pipeline {
     }
 
 
-    stage('Test'){
+    stage('Maven UnitTest'){
       steps {
         sh 'mvn test'
       }
@@ -59,7 +59,7 @@ pipeline {
     }
 
 
-    stage('Build App Image') {
+    stage('Build Image using Docker') {
        steps {
        
          script {
@@ -70,7 +70,7 @@ pipeline {
     
     }
 
-    stage('Upload App Image') {
+    stage('Upload Image to ECR') {
           steps{
             script {
               docker.withRegistry( vprofileRegistry, registryCredential ) {
