@@ -43,8 +43,19 @@ pipeline {
       steps {
         script {
             def scannerHome = tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+            def projectKey = 'jenkinscicd'
+            def projectVersion = '1.0'
+            
             withSonarQubeEnv('sonar') {
-                sh "${scannerHome}/bin/sonar-scanner"
+                sh """
+                        ${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.projectName='jenkinscicd' \
+                        -Dsonar.projectKey=${projectKey} \
+                        -Dsonar.projectVersion=${projectVersion} \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=${SONARQUBE_SERVER_URL} \
+                        -Dsonar.login=${SONARQUBE_TOKEN}
+                   """
             }
         }
       }
